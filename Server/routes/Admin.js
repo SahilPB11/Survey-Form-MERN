@@ -1,5 +1,5 @@
 import express from "express";
-import { signUp } from "../controllers/adminController";
+import { login, logout, signUp } from "../controllers/adminController";
 
 const router = express.Router();
 
@@ -7,6 +7,9 @@ const router = express.Router();
 router.post("/signup", signUp);
 
 // for admin to login
-router.post("/login", )
+router.post("/login", login);
+
+// for admin logout
+router.get("/logout", logout);
 
 export default router;
