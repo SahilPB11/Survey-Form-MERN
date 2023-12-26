@@ -4,7 +4,7 @@ const connectDb = async () => {
   try {
     await mongoose
       .connect(process.env.Mongo_URl, {
-        dbName: "ShortUrl",
+        dbName: "Survey-Form",
       })
       .then((c) =>
         console.log(`Databse connected safely with ${c.connection.host}`)
