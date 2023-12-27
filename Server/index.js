@@ -21,7 +21,6 @@ app.use(
     origin: "https://survey-form-mern.vercel.app/",
   })
 );
-app.use(cors());
 
 // middlewares
 app.use(bodyParser.json());
