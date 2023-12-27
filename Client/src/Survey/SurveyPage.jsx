@@ -3,7 +3,7 @@ import axios from "axios";
 import SurveyForm from "../component/SurveyForm.jsx";
 import { AdminContext } from "../context/AdminContext.jsx";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const SurveyPage = () => {
   const [surveys, setSurveys] = useState([]);
   const { isAuthenticated, logoutUser } = useContext(AdminContext);
@@ -24,9 +24,19 @@ const SurveyPage = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/admin/logout");
-      navigate("/login");
-      logoutUser();
+      const { data } = await axios.get("/admin/logout");
+
+      if (data?.success == true) {
+        toast.success(data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        navigate("/login");
+        logoutUser();
+      } else {
+        toast.error(data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     } catch (error) {
       console.error("Error logging out:", error);
     }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import filteredNations from "./data";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const HomePage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -27,6 +27,15 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/survey", formData);
+      if (response?.data?.success == true) {
+        toast.success(response?.data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.error(response?.data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
       setFormData({
         name: "",
         gender: "",

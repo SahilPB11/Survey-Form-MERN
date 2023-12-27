@@ -14,7 +14,7 @@ export const AdminProvider = ({ children }) => {
       // Set Axios headers for authorization
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setIsAuthenticated(true);
-    }
+    } 
   }, []);
 
   const loginUser = (adminData) => {

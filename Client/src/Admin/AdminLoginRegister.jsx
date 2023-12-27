@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext.jsx";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const AdminLoginRegister = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +18,15 @@ const AdminLoginRegister = () => {
       password,
     });
     const isIt = loginUser(data);
-    if (isIt) {
+    if (data?.success == true) {
+      toast.success(data?.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
       navigate("/login/survey");
+    } else {
+      toast.error(data?.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
