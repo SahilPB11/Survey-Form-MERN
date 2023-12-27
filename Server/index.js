@@ -14,12 +14,12 @@ export const app = express();
 config({
   path: "./.env",
 });
-
+const link = process.env.Cors_Link;
 // routes
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: link,
   })
 );
 
