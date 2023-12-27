@@ -14,6 +14,8 @@ const sendCookie = (res, user, statusCode = 201, message) => {
     .json({
       success: true,
       message: message,
+      username: user.username,
+      _id: user._id,
     });
 };
 

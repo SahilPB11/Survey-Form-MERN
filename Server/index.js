@@ -7,12 +7,21 @@ import adminRouter from "./routes/Admin.js";
 import surveyFormRegister from "./routes/Survey.js";
 import getSurveyForms from "./routes/getSurveyForms.js";
 import isAuthenticated from "./middlewares/Authenticated.js";
+import cors from "cors";
 
 // here i am exporting app to server.js file
 export const app = express();
 config({
   path: "./.env",
 });
+
+// routes
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 // middlewares
 app.use(bodyParser.json());
