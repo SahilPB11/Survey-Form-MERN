@@ -15,12 +15,6 @@ config({
   path: "./.env",
 });
 
-// middlewares
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cookieParser());
-
 // const link = process.env.Cors_Link;
 app.use(
   cors({
@@ -28,6 +22,12 @@ app.use(
     origin: "https://survey-form-mern.vercel.app",
   })
 );
+
+// middlewares
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
 
 // routes
 app.use("/admin", adminRouter);
