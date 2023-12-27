@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "./middlewares/error.js";
 import adminRouter from "./routes/Admin.js";
+import surveyFormRegister from "./routes/Survey.js";
 
 // here i am exporting app to server.js file
 export const app = express();
@@ -17,8 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+
 // routes
 app.use("/admin", adminRouter);
+app.use("/survey", surveyFormRegister);
 
 // error handler middleware
 app.use(errorMiddleware);
