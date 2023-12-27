@@ -15,12 +15,12 @@ config({
   path: "./.env",
 });
 // const link = process.env.Cors_Link;
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: link,
-//   })
-// );
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://survey-form-mern.vercel.app/",
+  })
+);
 app.use(cors());
 
 // middlewares
