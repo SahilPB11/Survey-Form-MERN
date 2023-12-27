@@ -35,8 +35,10 @@ export const fillSurveyForm = async (req, res, next) => {
       message,
     });
     const saved = await survey.save();
-    res.status(201).send({ message: "Successfully registered." });
+    res
+      .status(201)
+      .send({ success: true, message: "Successfully registered." });
   } catch (error) {
-    res.status(500).send({ message: "Internal Server Error" });
+    res.status(500).send({ success: false, message: "Internal Server Error" });
   }
 };

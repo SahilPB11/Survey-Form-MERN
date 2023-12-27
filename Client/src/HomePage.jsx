@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import filteredNations from "./data";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     gender: "",
@@ -25,7 +27,6 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/survey", formData);
-      console.log("Form data after submission:", formData); // Add this line
       setFormData({
         name: "",
         gender: "",
@@ -41,23 +42,30 @@ const HomePage = () => {
       // Handle error
     }
   };
+  const handleAdminClick = () => {
+    // Redirect to the login page when admin button is clicked
+    navigate("/login"); // Replace '/login' with your login route path
+  };
 
   return (
-    <div
-      className="min-h-screen min-w-screen flex justify-center items-center"
-      style={{ backgroundColor: "rgb(196, 186, 174)" }}
-    >
-      <div
-        className="flex flex-col lg:flex-row p-8 rounded-md shadow-sm w-full max-w-screen-xl"
-        style={{ background: "transparent" }}
-      >
+    <div className="bg-cover min-h-screen flex items-center justify-center bg-black overflow-y-auto">
+      {/* Admin Button */}
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={handleAdminClick}
+          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all"
+        >
+          Admin Login
+        </button>
+      </div>
+      <div className="flex flex-col lg:flex-row h-full w-full m-auto items-center justify-center rounded-md shadow-lg bg-black bg-opacity-85">
         {/* Form Section */}
-        <div className="w-full lg:w-1/2 p-4">
-          <h1 className="text-3xl mb-4 font-semibold text-center lg:text-left">
+        <div className="flex-1 p-12 flex flex-col items-center justify-center">
+          <h1 className="text-3xl mb-4 font-semibold text-white">
             Survey Form
           </h1>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name */}
+          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+            {/* Your form fields here with black theme styling and hover effect */}
             <input
               type="text"
               name="name"
@@ -65,16 +73,14 @@ const HomePage = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             />
-
-            {/* Gender */}
             <select
               name="gender"
               value={formData.gender}
               onChange={handleChange}
               required
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             >
               <option value="" disabled>
                 Select Gender
@@ -90,7 +96,7 @@ const HomePage = () => {
               value={formData.nationality}
               onChange={handleChange}
               required
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             >
               <option value="" disabled>
                 Select Nationality
@@ -110,7 +116,7 @@ const HomePage = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             />
 
             {/* Phone Number */}
@@ -121,7 +127,7 @@ const HomePage = () => {
               value={formData.phoneNumber}
               onChange={handleChange}
               required
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             />
 
             {/* Address */}
@@ -132,7 +138,7 @@ const HomePage = () => {
               onChange={handleChange}
               required
               rows="4"
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             ></textarea>
 
             {/* Message */}
@@ -143,24 +149,23 @@ const HomePage = () => {
               onChange={handleChange}
               required
               rows="4"
-              className="border p-2 w-full rounded-md"
+              className="border p-2 w-full rounded-md bg-black text-white hover:border-blue-500 focus:border-blue-500 transition-all"
             ></textarea>
 
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full transition-all"
             >
               Submit
             </button>
+            {/* Continue for other form fields */}
           </form>
         </div>
-
-        {/* Image Section */}
-        <div className="hidden lg:block lg:w-1/2 p-4">
+        <div className="hidden lg:block flex-1 overflow-hidden shadow-md">
           <img
             src={"./img/sur.jpeg"}
             alt="Survey"
-            className="object-cover w-full h-full rounded-md"
+            className="object-cover w-4/5 h-4/5"
           />
         </div>
       </div>
