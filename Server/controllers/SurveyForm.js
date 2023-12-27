@@ -20,7 +20,6 @@ export const fillSurveyForm = async (req, res, next) => {
   try {
     // Check if survey with same email, name, and phone number already exists
     const existingSurvey = await checkExistingSurvey(email, name, phoneNumber);
-
     if (existingSurvey) {
       return next(new ErrorHandler("You are already registered.", 409));
     }
@@ -35,8 +34,7 @@ export const fillSurveyForm = async (req, res, next) => {
       address,
       message,
     });
-
-    await survey.save();
+    const saved = await survey.save();
     res.status(201).send({ message: "Successfully registered." });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
