@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext.jsx";
-
+import { useNavigate } from "react-router-dom";
 const AdminLoginRegister = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoginOrRegister, setIsLoginOrRegister] = useState("register");
   const { loginUser } = useContext(AdminContext); // Changed to loginUser from context
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +16,10 @@ const AdminLoginRegister = () => {
       username: userName,
       password,
     });
-    console.log(data);
-    loginUser(data);
+    const isIt = loginUser(data);
+    if (isIt) {
+      navigate("/login/survey");
+    }
   };
 
   return (

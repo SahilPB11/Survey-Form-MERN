@@ -23,8 +23,8 @@ export const AdminProvider = ({ children }) => {
     setIsAuthenticated(true);
     // Store token in local storage
     localStorage.setItem("token", adminData.token); // Corrected from userData.token
+    return true;
   };
-  
 
   const logoutUser = () => {
     setUserName("");
@@ -34,6 +34,7 @@ export const AdminProvider = ({ children }) => {
     localStorage.removeItem("token");
     // Remove Axios authorization header
     delete axios.defaults.headers.common["Authorization"];
+    // navigate("/surveyPage");
   };
 
   return (
