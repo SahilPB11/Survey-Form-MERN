@@ -16,12 +16,13 @@ config({
 });
 const link = process.env.Cors_Link;
 // routes
-app.use(
-  cors({
-    credentials: true,
-    origin: link,
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: link,
+//   })
+// );
+app.use(cors());
 
 // middlewares
 app.use(bodyParser.json());
