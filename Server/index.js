@@ -15,7 +15,6 @@ config({
   path: "./.env",
 });
 
-
 // middlewares
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,11 +25,9 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://survey-form-mern.vercel.app/",
+    origin: "https://survey-form-mern.vercel.app",
   })
 );
-
-
 
 // routes
 app.use("/admin", adminRouter);
