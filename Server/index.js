@@ -14,8 +14,9 @@ export const app = express();
 config({
   path: "./.env",
 });
+const rouetr = express.Router();
 const link = process.env.Cors_Link;
-// routes
+routes;
 // app.use(
 //   cors({
 //     credentials: true,
@@ -34,6 +35,6 @@ app.use(cookieParser());
 app.use("/admin", adminRouter);
 app.use("/survey", surveyFormRegister);
 app.use("/admin/forms", isAuthenticated, getSurveyForms);
-
+app.use();
 // error handler middleware
 app.use(errorMiddleware);
